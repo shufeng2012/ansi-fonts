@@ -1,0 +1,130 @@
+/*
+Copyright (c) 2026 shufeng2012
+
+ANSI Fonts Package by C++
+*/
+
+#pragma once
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Global variables
+const string CLEAR = "\033[0m";
+
+// Front ground colors
+const string RED = "\033[31m";
+const string GREEN = "\033[32m";
+const string YELLOW = "\033[33m";
+const string BLUE = "\033[34m";
+const string PURPLE = "\033[35m";
+const string CYAN = "\033[36m";
+
+// Background colors
+const string BG_RED = "\033[41m";
+const string BG_GREEN = "\033[42m";
+const string BG_YELLOW = "\033[43m";
+const string BG_BLUE = "\033[44m";
+const string BG_PURPLE = "\033[45m";
+const string BG_CYAN = "\033[46m";
+
+// Font styles
+const string BOLD = "\033[1m";        // Bold
+const string DARKEN = "\033[2m";      // Darken
+const string ITALIC = "\033[3m";      // Italic
+const string UDLINE = "\033[4m";      // Underline
+const string SLOW_FLASH = "\033[5m";  // Slow flash  //! Some terminals may not be supported.
+const string FAST_FLASH = "\033[6m";  // Fast flash  //! Some terminals may not be supported.
+const string INVCOLOR = "\033[7m";    //Inverted color
+const string INVISIBLE = "\033[8m";   // Invisible
+const string STKETHROUGH = "\033[9m"; // Strikethrough
+
+// Functions
+string color(string str, string fg_color = CLEAR, string bg_color = CLEAR, bool clear = true){  //! Cannot use both fg_color and bg_color!
+    /*
+    Provide colorful text function.
+    */
+
+    if ((fg_color == CLEAR) && (bg_color == CLEAR))
+        return str;
+    else if ((fg_color != CLEAR) && (bg_color != CLEAR)){
+        cout << RED << "ERROR: Cannot use boht fg_color and bg_color" << CLEAR << endl;
+        return "Error";
+    }
+    else {
+        if (bg_color == CLEAR){
+            if (clear == true)
+                return fg_color + str + CLEAR;
+            else
+                return fg_color + str;
+        }
+        else if (fg_color == CLEAR){
+            if (clear == true)
+                return bg_color + str + CLEAR;
+            else
+                return bg_color + str;
+        }
+    }
+    return str;
+}
+
+string variant(string str, string variant = CLEAR, bool clear = true){
+    /*
+    Provide more font styles function.
+    */
+
+    if (variant == CLEAR)
+        return str;
+    else {
+        string re = "";
+        re += variant + str;
+        if (clear == true)
+            re += CLEAR;
+        return re;
+    }
+}
+
+string mix(string str, string fg_color = CLEAR, string bg_color = CLEAR, string variant = CLEAR, bool clear = true){    //! Cannot use both fg_color and bg_color!
+    /*
+    Mix both the two functions.
+    */
+
+    string re = "";
+    if ((fg_color == CLEAR) && (bg_color == CLEAR) && (variant == CLEAR))
+        return str;
+    else if ((fg_color == CLEAR) && (bg_color == CLEAR) && (variant == CLEAR)){
+        cout << RED << "ERROR: Cannot use both fg_color and bg_color!" << CLEAR;
+        return "Error";
+    }
+    else if (variant != CLEAR){
+        re += variant;
+        if ((fg_color == CLEAR) && (bg_color == CLEAR)){
+            re += str;
+            if (clear == true)
+                re += CLEAR;
+        }
+        if (bg_color == CLEAR){
+            if (clear == true)
+                re += fg_color + str + CLEAR;
+            else re += fg_color + str;
+        }
+        if (fg_color == CLEAR){
+            if (clear == true)
+                re += bg_color + str + CLEAR;
+            else re += bg_color + str;
+        }
+    }
+    else {
+        if (bg_color == CLEAR){
+            if (clear == true)
+                re += fg_color + str + CLEAR;
+            else re += fg_color + str;
+        }
+        if (fg_color == CLEAR){
+            if (clear == true)
+                re += bg_color + str + CLEAR;
+            else re += bg_color + str;
+        }
+    }
+    return re;
+}
