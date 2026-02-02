@@ -84,6 +84,20 @@ def mix(string: str, fg_color: str = CLEAR, bg_color: str = CLEAR, variant: str 
         return "Error"
     elif variant != CLEAR:
         re += variant
+        if (fg_color == CLEAR) and (bg_color == CLEAR):
+            re += string
+            if clear == True:
+                re += CLEAR
+        if bg_color == CLEAR:
+            if clear == True:
+                re += fg_color + string + CLEAR
+            else:
+                re += fg_color + string
+        if fg_color == CLEAR:
+            if clear == True:
+                re += bg_color + string + CLEAR
+            else:
+                re += bg_color + string
     else:
         if bg_color == CLEAR:
             if clear == True:
@@ -95,3 +109,4 @@ def mix(string: str, fg_color: str = CLEAR, bg_color: str = CLEAR, variant: str 
                 re += bg_color + string + CLEAR
             else:
                 re += bg_color + string
+    return re
