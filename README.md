@@ -1,2 +1,2 @@
 # ansi-fonts
-✨ This package can make you output colorful and beautiful! ✨
+✨ This package can make your output colorful and beautiful! ✨
