@@ -7,7 +7,7 @@ ANSI Fonts Package by Python
 # Global variables
 CLEAR = "\033[0m"
 
-# Froeground colors
+# Fore ground colors
 RED = "\033[31m"
 GREEN = "\033[32m"
 YELLOW = "\033[33m"
