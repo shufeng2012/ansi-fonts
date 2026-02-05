@@ -7,7 +7,7 @@ ANSI Fonts Package by Python
 # Global variables
 CLEAR = "\033[0m"
 
-# Front ground colors
+# Froeground colors
 RED = "\033[31m"
 GREEN = "\033[32m"
 YELLOW = "\033[33m"
@@ -109,5 +109,4 @@ def mix(string: str, fg_color: str = CLEAR, bg_color: str = CLEAR, variant: str 
                 re += bg_color + string + CLEAR
             else:
                 re += bg_color + string
-
     return re
