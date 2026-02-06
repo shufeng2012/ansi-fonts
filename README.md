@@ -24,7 +24,7 @@
 + **➕More styles than *colorama***: Supports more styles such as **bold**, *italic*, etc.
 + **💪Powerful mix() function**: Both font color and font variation can be **used at the same time**.
 + **🎛️Modularity functions**: Provide functions with separate styles, such as *color()* and *variant()*.
-+ 
+
 # 🖼️Demo
 **Example of use**:
 ```python
