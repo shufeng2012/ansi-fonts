@@ -46,18 +46,13 @@ int main() {
 }
 ```
 
-The result of running the above code is as follows:
-<p style="color: red">Hello world!</p>
-<b>Hello world!</b>
-<p style="color: red"><u>Hello world!</u></p>
-
 Please execute the code under `test/` to see the specific results.
 
 # 🚀Fast Start
 + Clone this repository.
-+ ```bash
+```bash
 git clone https://github.com/shufeng2012/ansi-fonts
-	```
+```
 + Import it into your code.
 
 # 📖Using It
