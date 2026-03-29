@@ -13,6 +13,7 @@ using namespace std;
 const string CLEAR = "\033[0m";
 
 // Foreground colors
+const string BLACK = "\033[30m";
 const string RED = "\033[31m";
 const string GREEN = "\033[32m";
 const string YELLOW = "\033[33m";
@@ -21,6 +22,7 @@ const string PURPLE = "\033[35m";
 const string CYAN = "\033[36m";
 
 // Background colors
+const string BG_BLACK = "\033[40m";
 const string BG_RED = "\033[41m";
 const string BG_GREEN = "\033[42m";
 const string BG_YELLOW = "\033[43m";

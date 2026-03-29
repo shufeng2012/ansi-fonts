@@ -8,6 +8,7 @@ ANSI Fonts Package by Python
 CLEAR = "\033[0m"
 
 # Foreground colors
+BLACK = "\033[30m"
 RED = "\033[31m"
 GREEN = "\033[32m"
 YELLOW = "\033[33m"
@@ -16,6 +17,7 @@ PURPLE = "\033[35m"
 CYAN = "\033[36m"
 
 # Background colors
+BG_BLACK = "\033[40m"
 BG_RED = "\033[41m"
 BG_GREEN = "\033[42m"
 BG_YELLOW = "\033[43m"
