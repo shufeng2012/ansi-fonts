@@ -8,6 +8,7 @@ ANSI Fonts Package by Python
 CLEAR = "\033[0m"
 
 # Foreground colors
+BLACK = "\033[30m"
 RED = "\033[31m"
 GREEN = "\033[32m"
 YELLOW = "\033[33m"
@@ -16,6 +17,7 @@ PURPLE = "\033[35m"
 CYAN = "\033[36m"
 
 # Background colors
+BG_BLACK = "\033[40m"
 BG_RED = "\033[41m"
 BG_GREEN = "\033[42m"
 BG_YELLOW = "\033[43m"
@@ -35,27 +37,23 @@ INVISIBLE = "\033[8m"   # Invisible
 STKETHROUGH = "\033[9m" # Strikethrough
 
 # Functions
-def color(string: str, fg_color: str = CLEAR, bg_color: str = CLEAR, clear: bool = True) -> str:        #! Cannot use both fg_color and bg_color.
+def color(string: str, fg_color: str = CLEAR, bg_color: str = CLEAR, clear: bool = True) -> str:
     '''
     Provide colorful text function.
     '''
 
+    re: str = string
     if (fg_color == CLEAR) and (bg_color == CLEAR):
         return string
-    elif (fg_color != CLEAR) and (bg_color != CLEAR):
-        print(RED + "ERROR: Cannot use both fg_color and bg_color!" + CLEAR)
-        return "Error"
     else:
-        if bg_color == CLEAR:
-            if clear == True:
-                return fg_color + string + CLEAR
-            else:
-                return fg_color + string
-        if fg_color == CLEAR:
-            if clear == True:
-                return bg_color + string + CLEAR
-            else:
-                return bg_color + string
+        if fg_color != CLEAR:
+            re = fg_color + re
+        if bg_color != CLEAR:
+            re = bg_color + re
+        if clear == True:
+            re += CLEAR
+        return re
+
 
 def variant(string: str, variant: str = CLEAR, clear: bool = True) -> str:
     '''
@@ -71,42 +69,28 @@ def variant(string: str, variant: str = CLEAR, clear: bool = True) -> str:
             re += CLEAR
         return re
 
-def mix(string: str, fg_color: str = CLEAR, bg_color: str = CLEAR, variant: str = CLEAR, clear: bool = True) -> str:    #! Cannot use both fg_color and bg_color.
+def mix(string: str, fg_color: str = CLEAR, bg_color: str = CLEAR, variant: str = CLEAR, clear: bool = True) -> str:
     '''
     Mix both the two functions.
     '''
 
-    re: str = ""
+    re: str = string
     if (fg_color == CLEAR) and (bg_color == CLEAR) and (variant == CLEAR):
         return string
-    elif (fg_color != CLEAR) and (bg_color != CLEAR) and (variant != CLEAR):
-        print(RED + "ERROR: Cannot use both fg_color and bg_color!" + CLEAR)
-        return "Error"
     elif variant != CLEAR:
-        re += variant
-        if (fg_color == CLEAR) and (bg_color == CLEAR):
-            re += string
-            if clear == True:
-                re += CLEAR
-        if bg_color == CLEAR:
-            if clear == True:
-                re += fg_color + string + CLEAR
-            else:
-                re += fg_color + string
-        if fg_color == CLEAR:
-            if clear == True:
-                re += bg_color + string + CLEAR
-            else:
-                re += bg_color + string
+        re = variant + re
+        if fg_color != CLEAR:
+            re = fg_color + re
+        if bg_color != CLEAR:
+            re = bg_color + re
+        if clear == True:
+            re += CLEAR
+        return re
     else:
-        if bg_color == CLEAR:
-            if clear == True:
-                re += fg_color + string + CLEAR
-            else:
-                re += fg_color + string
-        if fg_color == CLEAR:
-            if clear == True:
-                re += bg_color + string + CLEAR
-            else:
-                re += bg_color + string
-    return re
+        if fg_color != CLEAR:
+            re = fg_color + re
+        if bg_color != CLEAR:
+            re = bg_color + re
+        if clear == True:
+            re += CLEAR
+        return re

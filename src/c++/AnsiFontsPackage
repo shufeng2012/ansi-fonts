@@ -42,30 +42,21 @@ const string INVISIBLE = "\033[8m";   // Invisible
 const string STKETHROUGH = "\033[9m"; // Strikethrough
 
 // Functions
-string color(string str, string fg_color = CLEAR, string bg_color = CLEAR, bool clear = true) {  //! Cannot use both fg_color and bg_color!
+string color(string str, string fg_color = CLEAR, string bg_color = CLEAR, bool clear = true) {
     /*
     Provide colorful text function.
     */
 
+    string re = str;
     if ((fg_color == CLEAR) && (bg_color == CLEAR))
         return str;
-    else if ((fg_color != CLEAR) && (bg_color != CLEAR)) {
-        cout << RED << "ERROR: Cannot use boht fg_color and bg_color" << CLEAR << endl;
-        return "Error";
-    }
     else {
-        if (bg_color == CLEAR) {
-            if (clear == true)
-                return fg_color + str + CLEAR;
-            else
-                return fg_color + str;
-        }
-        else if (fg_color == CLEAR) {
-            if (clear == true)
-                return bg_color + str + CLEAR;
-            else
-                return bg_color + str;
-        }
+        if (fg_color != CLEAR)
+            re = fg_color + re;
+        if (bg_color != CLEAR)
+            re = bg_color + re;
+        if (clear == true)
+            re += CLEAR;
     }
     return str;
 }
@@ -86,47 +77,30 @@ string variant(string str, string variant = CLEAR, bool clear = true) {
     }
 }
 
-string mix(string str, string fg_color = CLEAR, string bg_color = CLEAR, string variant = CLEAR, bool clear = true) {    //! Cannot use both fg_color and bg_color!
+string mix(string str, string fg_color = CLEAR, string bg_color = CLEAR, string variant = CLEAR, bool clear = true) {
     /*
     Mix both the two functions.
     */
 
-    string re = "";
+    string re = str;
     if ((fg_color == CLEAR) && (bg_color == CLEAR) && (variant == CLEAR))
         return str;
-    else if ((fg_color == CLEAR) && (bg_color == CLEAR) && (variant == CLEAR)) {
-        cout << RED << "ERROR: Cannot use both fg_color and bg_color!" << CLEAR;
-        return "Error";
-    }
     else if (variant != CLEAR) {
-        re += variant;
-        if ((fg_color == CLEAR) && (bg_color == CLEAR)) {
-            re += str;
-            if (clear == true)
-                re += CLEAR;
-        }
-        if (bg_color == CLEAR) {
-            if (clear == true)
-                re += fg_color + str + CLEAR;
-            else re += fg_color + str;
-        }
-        if (fg_color == CLEAR) {
-            if (clear == true)
-                re += bg_color + str + CLEAR;
-            else re += bg_color + str;
-        }
+        re = variant + re;
+        if (fg_color != CLEAR)
+            re = fg_color + re;
+        if (bg_color != CLEAR)
+            re = bg_color + re;
+        if (clear == true)
+            re += CLEAR;
     }
     else {
-        if (bg_color == CLEAR) {
-            if (clear == true)
-                re += fg_color + str + CLEAR;
-            else re += fg_color + str;
-        }
-        if (fg_color == CLEAR) {
-            if (clear == true)
-                re += bg_color + str + CLEAR;
-            else re += bg_color + str;
-        }
+        if (fg_color != CLEAR)
+            re = fg_color + re;
+        if (bg_color != CLEAR)
+            re = bg_color + re;
+        if (clear == true)
+            re += CLEAR;
     }
     return re;
 }
